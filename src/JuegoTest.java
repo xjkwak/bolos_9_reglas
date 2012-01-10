@@ -1,36 +1,52 @@
 import static org.junit.Assert.*;
+
+import org.junit.Before;
 import org.junit.Test;
 
 public class JuegoTest {
 	Juego juego = new Juego();
+	Total total;
+	
+	@Before
+	public void inicializar() {
+//		total = new Total();
+	}
 	
 	@Test
 	public void todosLosLanzamientosAlCanal() throws Exception {
+		total = new Total();
 		lanzarVarios(20, 0);
-		assertEquals(0, juego.puntaje());
+		assertEquals(total, juego.puntaje());
 	}
 	
 	@Test
 	public void todosLosLanzamientosDerribanUnPino() throws Exception {
+		total = new Total(20);
 		lanzarVarios(20, 1);
-		assertEquals(20, juego.puntaje());
+		assertEquals(total, juego.puntaje());
 	}
 	
 	@Test
 	public void variosLanzamientosConUnSpare() throws Exception {
+		total = new Total(14);
+		
 		lanzarSpare();
 		juego.lanzar(2);
 		lanzarVarios(17, 0);
-		assertEquals(14, juego.puntaje());
+		
+		assertEquals(total, juego.puntaje());
 	}
 
 	@Test
 	public void variosLanzamientosConUnStrike() throws Exception {
+		total = new Total(24);
+		
 		lanzarStrike();
 		juego.lanzar(3);
 		juego.lanzar(4);
 		lanzarVarios(17, 0);
-		assertEquals(24, juego.puntaje());
+		
+		assertEquals(total, juego.puntaje());
 	}
 
 	private void lanzarStrike() {
@@ -39,8 +55,9 @@ public class JuegoTest {
 	
 	@Test
 	public void juegoPerfecto() throws Exception {
+		total = new Total(300);
 		lanzarVarios(12, 10);
-		assertEquals(300, juego.puntaje());
+		assertEquals(total, juego.puntaje());
 	}
 
 	private void lanzarVarios(int n, int pinos) {

@@ -6,32 +6,30 @@ public class Lanzamientos {
 
 	private List<Lanzamiento> lanzamientos = new ArrayList<Lanzamiento>();
 	
+	
 	public void add(int pinos){
 		lanzamientos.add(new Lanzamiento(pinos));
 	}
 	
-	public Lanzamiento get(int indexFrame) {
-		return lanzamientos.get(indexFrame);
+	public Lanzamiento get(IndexFrame indexFrame) {
+		return lanzamientos.get(indexFrame.get());
 	}
 	
-	public boolean esStrike(int indexFrame) {
-		return lanzamientos.get(indexFrame).esStrike();
+	public int bonoStrike(IndexFrame indexFrame) {
+		
+		return lanzamientos.get(indexFrame.get() + 1).getPinosDerribados() + bonoSpare(indexFrame);
 	}
 
-	public int bonoStrike(int indexFrame) {
-		return lanzamientos.get(indexFrame + 1).getPinosDerribados() + bonoSpare(indexFrame);
-	}
-
-	public boolean esSpare(int indexFrame) {
+	public boolean esSpare(IndexFrame indexFrame) {
 		return sumaDeDosLanzamientos(indexFrame).esStrike();
 	}
 	
-	public int bonoSpare(int indexFrame) {
-		return lanzamientos.get(indexFrame + 2).getPinosDerribados();
+	public int bonoSpare(IndexFrame indexFrame) {
+		return lanzamientos.get(indexFrame.get() + 2).getPinosDerribados();
 	}
 
-	public Lanzamiento sumaDeDosLanzamientos(int indexFrame) {
-		return lanzamientos.get(indexFrame).sumar(lanzamientos.get(indexFrame + 1));
+	public Lanzamiento sumaDeDosLanzamientos(IndexFrame indexFrame) {
+		return lanzamientos.get(indexFrame.get()).sumar(lanzamientos.get(indexFrame.get() + 1));
 	}
 
 }
