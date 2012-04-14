@@ -1,4 +1,4 @@
-TODO
+**TODO
 - La responsabilidad de Lanzamientos no parece estar bien definida
 	- Lanzamientos deberian saber lo que es un strike, spare?
 - IteradorLanzamientos todavia no esta siendo usado
